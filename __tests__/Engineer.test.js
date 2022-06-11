@@ -4,42 +4,47 @@ describe('Engineer', () => {
 
     describe("Initialization", () => {
 
-        it('should return a new "Employee" object when called with the "new" keyword and provided valid arguments', () => {
+        it('should return a new "Engineer" object when called with the "new" keyword and provided valid arguments', () => {
             const name = 'Bob';
             const id = 20;
             const email = 'bob@email.com';
+            const github = 'Bob01';
 
-            const employee = new Engineer(name, id, email);
+            const engineer = new Engineer(name, id, email, github);
 
-            expect(employee).toBeInstanceOf(Employee);
+            expect(engineer).toBeInstanceOf(Engineer);
         });
 
-        it('should create an object containing "name", "id", and "email" properties when provided valid arguments', () => {
+        it('should create an object containing "name", "id", "email", and "github" properties when provided valid arguments', () => {
             const name = 'Bob';
             const id = 20;
             const email = 'bob@email.com';
+            const github = 'Bob01';
 
-            const employee = new Employee(name, id, email);
+            const engineer = new Engineer(name, id, email, github);
 
-            expect("name" in employee).toEqual(true);
-            expect("id" in employee).toEqual(true);
-            expect("email" in employee).toEqual(true);
+            expect("name" in engineer).toEqual(true);
+            expect("id" in engineer).toEqual(true);
+            expect("email" in engineer).toEqual(true);
+            expect("github" in engineer).toEqual(true);
         });
 
-        it('should create an object with values for "name", "id", and "email" mapped to the correct keys if provided valid arguments in the correct order', () => {
+        it('should create an object with values for "name", "id", "email", and "github" mapped to the correct keys if provided valid arguments in the correct order', () => {
             const name = 'Bob';
             const id = 20;
             const email = 'bob@email.com';
+            const github = 'Bob01';
 
-            const employee = new Employee(name, id, email);
+            const engineer = new Engineer(name, id, email, github);
 
-            expect(employee.name).toEqual(name);
-            expect(employee.id).toEqual(id);
-            expect(employee.email).toEqual(email);
+            expect(engineer.name).toEqual(name);
+            expect(engineer.id).toEqual(id);
+            expect(engineer.email).toEqual(email);
+            expect(engineer.github).toEqual(github);
         });
 
         it("should throw an error if provided no arguments", () => {
-            const cb = () => new Employee();
+            const cb = () => new Engineer();
       
             expect(cb).toThrow();
         });
@@ -48,8 +53,9 @@ describe('Engineer', () => {
             let nameUndefined;
             const id = 20;
             const email = 'bob@email.com';
+            const github = 'Bob01';
             
-            const cb = () => new Employee(nameUndefined, id, email);
+            const cb = () => new Engineer(nameUndefined, id, email, github);
             const err = new Error("Expected parameter 'name' to be a non-empty string");
       
             expect(cb).toThrowError(err);
@@ -59,8 +65,9 @@ describe('Engineer', () => {
             const nameNotAString = 10;
             const id = 20;
             const email = 'bob@email.com';
-            
-            const cb = () => new Employee(nameNotAString, id, email);
+            const github = 'Bob01';
+
+            const cb = () => new Engineer(nameNotAString, id, email, github);
             const err = new Error("Expected parameter 'name' to be a non-empty string");
       
             expect(cb).toThrowError(err)
@@ -70,20 +77,30 @@ describe('Engineer', () => {
             const nameEmptyString = '';
             const id = 20;
             const email = 'bob@email.com';
+            const github = 'Bob01';
             
-            const cb = () => new Employee(nameEmptyString, id, email);
+            const cb = () => new Engineer(nameEmptyString, id, email, github);
             const err = new Error("Expected parameter 'name' to be a non-empty string");
       
             expect(cb).toThrowError(err)
+        });
+
+        it("should throw an error if not provided an id, email, or github", () => {
+            const name = 'Bob';
+            
+            const cb = () => new Engineer(name);
+      
+            expect(cb).toThrow();
         });
 
         it("should throw an error if 'id' is undefined", () => {
             const name = 'Bob';
             let idUndefined;
             const email = 'bob@email.com';
+            const github = 'Bob01';
             
-            const cb = () => new Employee(name, idUndefined, email);
-            const err = new Error("Expected parameter 'id' to be a number");
+            const cb = () => new Engineer(name, idUndefined, email, github);
+            const err = new Error("Expected parameter 'id' to be a non-negative number");
       
             expect(cb).toThrowError(err);
         });
@@ -92,29 +109,42 @@ describe('Engineer', () => {
             const name = 'Bob';
             const idNotANumber = "20";
             const email = 'bob@email.com';
+            const github = 'Bob01';
             
-            const cb = () => new Employee(name, idNotANumber, email);
-            const err = new Error("Expected parameter 'id' to be a number");
+            const cb = () => new Engineer(name, idNotANumber, email, github);
+            const err = new Error("Expected parameter 'id' to be a non-negative number");
       
             expect(cb).toThrowError(err);
         });
 
-        it("should throw an error if not provided an email", () => {
+        it("should throw an error if 'id' is a negative number", () => {
+            const name = 'Bob';
+            const idNegativeNumber = -20;
+            const email = 'bob@email.com';
+            const github = 'Bob01';
+            
+            const cb = () => new Engineer(name, idNegativeNumber, email, github);
+            const err = new Error("Expected parameter 'id' to be a non-negative number");
+      
+            expect(cb).toThrowError(err);
+        });
+
+        it("should throw an error if not provided an email or github", () => {
             const name = 'Bob';
             const id = 20;
             
-            const cb = () => new Employee(name, id);
-            const err = new Error("Expected parameter 'email' to be a non-empty string");
+            const cb = () => new Engineer(name, id);
       
-            expect(cb).toThrowError(err);
+            expect(cb).toThrow();
         });
 
         it("should throw an error if 'email' is not a string", () => {
             const name = 'Bob';
             const id = 20;
             const emailNotAString = 10;
+            const github = 'Bob01';
                 
-            const cb = () => new Employee(name, id, emailNotAString);
+            const cb = () => new Engineer(name, id, emailNotAString, github);
             const err = new Error("Expected parameter 'email' to be a non-empty string");
       
             expect(cb).toThrowError(err);
@@ -124,11 +154,58 @@ describe('Engineer', () => {
             const name = 'Bob';
             const id = 20;
             const emailEmptyString = '';
+            const github = 'Bob01';
             
-            const cb = () => new Employee(name, id, emailEmptyString);
-
+            const cb = () => new Engineer(name, id, emailEmptyString, github);
             const err = new Error("Expected parameter 'email' to be a non-empty string");
       
+            expect(cb).toThrowError(err);
+        });
+
+        it("should throw an error if 'email' is undefined", () => {
+            const name = 'Bob';
+            const id = 20;
+            let emailUndefined;
+            const github = 'Bob01';
+            
+            const cb = () => new Engineer(name, id, emailUndefined, github);
+            const err = new Error("Expected parameter 'email' to be a non-empty string");
+      
+            expect(cb).toThrowError(err);
+        });
+
+        it("should throw an error if not provided a github", () => {
+            const name = 'Bob';
+            const id = 20;
+            const email = 'bob@email.com';
+            
+            const cb = () => new Engineer(name, id, email);
+            const err = new Error("Expected parameter 'github' to be a non-empty string");
+
+            expect(cb).toThrowError(err);
+        });
+
+        it("should throw an error if 'github' is not a string", () => {
+            const name = 'Bob';
+            const id = 20;
+            const email = 'bob@email.com';
+            const githubNotAString = 10;
+
+            const cb = () => new Engineer(name, id, email, githubNotAString);
+            const err = new Error("Expected parameter 'github' to be a non-empty string");
+
+            expect(cb).toThrowError(err);
+        });
+
+        it("should throw an error if 'github' is an empty string", () => {
+            const name = 'Bob';
+            const id = 20;
+            const email = 'bob@email.com';
+            const githubEmptyString = '';
+            
+            const cb = () => new Engineer(name, id, email, githubEmptyString);
+            const err = new Error("Expected parameter 'github' to be a non-empty string");
+
             expect(cb).toThrowError(err);
         });
 
@@ -136,11 +213,12 @@ describe('Engineer', () => {
 
     describe("getName", () => {
 
-        it("should return the 'Employee' object's 'name' value", () => {
+        it("should return the 'Engineer' object's 'name' value", () => {
             const name = 'Bob';
             const id = 20;
             const email = 'bob@email.com';
-            const obj = new Employee(name, id, email);
+            const github = 'Bob01';
+            const obj = new Engineer(name, id, email, github);
 
             const result = obj.getName();
 
@@ -151,11 +229,12 @@ describe('Engineer', () => {
 
     describe("getId", () => {
 
-        it("should return the 'Employee' object's 'id' value", () => {
+        it("should return the 'Engineer' object's 'id' value", () => {
             const name = 'Bob';
             const id = 20;
             const email = 'bob@email.com';
-            const obj = new Employee(name, id, email);
+            const github = 'Bob01';
+            const obj = new Engineer(name, id, email, github);
 
             const result = obj.getId();
 
@@ -166,11 +245,12 @@ describe('Engineer', () => {
 
     describe("getEmail", () => {
 
-        it("should return the 'Employee' object's 'email' value", () => {
+        it("should return the 'Engineer' object's 'email' value", () => {
             const name = 'Bob';
             const id = 20;
             const email = 'bob@email.com';
-            const obj = new Employee(name, id, email);
+            const github = 'Bob01';
+            const obj = new Engineer(name, id, email, github);
 
             const result = obj.getEmail();
 
@@ -179,18 +259,48 @@ describe('Engineer', () => {
 
     });
 
-    describe("getRole", () => {
+    describe("getGithub", () => {
 
-        it("should return the string 'Employee' which describes the 'Employee' class", () => {
+        it("should return the 'Engineer' object's 'github' value", () => {
             const name = 'Bob';
             const id = 20;
             const email = 'bob@email.com';
-            const obj = new Employee(name, id, email);
-            const str = 'Employee';
+            const github = 'Bob01';
+            const obj = new Engineer(name, id, email, github);
+
+            const result = obj.getGithub();
+
+            expect(result).toEqual(github);
+        });
+
+    });
+
+    describe("getRole", () => {
+
+        it("should return the string 'Engineer' which describes the 'Engineer' class", () => {
+            const name = 'Bob';
+            const id = 20;
+            const email = 'bob@email.com';
+            const github = 'Bob01';
+            const obj = new Engineer(name, id, email, github);
+            const str = 'Engineer';
 
             const result = obj.getRole();
 
             expect(result).toEqual(str);
+        });
+
+        it("should not return the string 'Employee' since the getRole method extended from the Employee class has been overridden to return the string 'Engineer'", () => {
+            const name = 'Bob';
+            const id = 20;
+            const email = 'bob@email.com';
+            const github = 'Bob01';
+            const obj = new Engineer(name, id, email, github);
+            const str = 'Employee';
+
+            const result = obj.getRole();
+
+            expect(result).not.toEqual(str);
         });
 
     });

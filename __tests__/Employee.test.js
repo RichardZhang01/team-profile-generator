@@ -83,7 +83,7 @@ describe('Employee', () => {
             const email = 'bob@email.com';
             
             const cb = () => new Employee(name, idUndefined, email);
-            const err = new Error("Expected parameter 'id' to be a number");
+            const err = new Error("Expected parameter 'id' to be a non-negative number");
       
             expect(cb).toThrowError(err);
         });
@@ -94,9 +94,28 @@ describe('Employee', () => {
             const email = 'bob@email.com';
             
             const cb = () => new Employee(name, idNotANumber, email);
-            const err = new Error("Expected parameter 'id' to be a number");
+            const err = new Error("Expected parameter 'id' to be a non-negative number");
       
             expect(cb).toThrowError(err);
+        });
+
+        it("should throw an error if 'id' is a negative number", () => {
+            const name = 'Bob';
+            const idNegativeNumber = -20;
+            const email = 'bob@email.com';
+            
+            const cb = () => new Employee(name, idNegativeNumber, email);
+            const err = new Error("Expected parameter 'id' to be a non-negative number");
+      
+            expect(cb).toThrowError(err);
+        });
+
+        it("should throw an error if not provided an id or email", () => {
+            const name = 'Bob';
+            
+            const cb = () => new Employee(name);
+      
+            expect(cb).toThrow();
         });
 
         it("should throw an error if not provided an email", () => {
@@ -126,7 +145,6 @@ describe('Employee', () => {
             const emailEmptyString = '';
             
             const cb = () => new Employee(name, id, emailEmptyString);
-
             const err = new Error("Expected parameter 'email' to be a non-empty string");
       
             expect(cb).toThrowError(err);
