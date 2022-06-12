@@ -3,11 +3,12 @@ const inquirer = require('inquirer');
 
 const generateHTML = require('./src/generateHTML');
 
-const questions = [
+const introQuestion = [
+
     {
         name: 'fileName',
         type: 'input',
-        message: 'Enter a file name for your markdown document.',
+        message: 'Enter a name for your HTML document.',
         validate: input => {
             if (input) {
                 return true;
@@ -16,206 +17,227 @@ const questions = [
                 return false;
             }
         } 
-    },
+    }
+
+]
+
+const managerQuestions = [
 
     {
-        name: 'title',
+        name: 'name',
         type: 'input',
-        message: 'What is the title of your project?',
+        message: "What is the team manager's name?",
         validate: input => {
             if (input) {
                 return true;
             } else {
-                console.log('\x1b[31mNo Input detected.  Please enter a title.\x1b[0m');
+                console.log('\x1b[31mNo Input detected. Please enter a name.\x1b[0m');
                 return false;
             }
         } 
     },
 
     {
-        name: 'descriptionMotivation',
+        name: 'id',
         type: 'input',
-        message: 'What was your motivation behind your project?',
-        validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('\x1b[31mNo Input detected.  Please enter your motivation behind the project.\x1b[0m');
-                return false;
-            }
-        } 
-    },
-
-    {
-        name: 'descriptionBuild',
-        type: 'input',
-        message: 'Why did you build this project?',
-        validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('\x1b[31mNo Input detected.  Please enter your reason for building this project.\x1b[0m');
-                return false;
-            }
-        } 
-    },
-
-    {
-        name: 'descriptionProblem',
-        type: 'input',
-        message: 'What problem does your project solve?',
-        validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('\x1b[31mNo Input detected.  Please enter the problem your projects solves.\x1b[0m');
-                return false;
-            }
-        }
-    },
-
-    {
-        name: 'descriptionLearn',
-        type: 'input',
-        message: 'What did you learn from your project?',
-        validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('\x1b[31mNo Input detected.  Please enter what you learned.\x1b[0m');
-                return false;
-            }
-        }
-    },
-
-    {
-        name: 'installation',
-        type: 'input',
-        message: 'What are the steps required to install your project?',
-        validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('\x1b[31mNo Input detected.  Please enter installation steps.\x1b[0m');
-                return false;
-            }
-        }
-    },
-
-    {
-        name: 'usage',
-        type: 'input',
-        message: 'Please provide instructions and examples on how to use your project.',
-        validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('\x1b[31mNo Input detected.  Please enter how to use your project.\x1b[0m');
-                return false;
-            }
-        }
-    },
-
-    {
-        name: 'licenseList',
-        type: 'list',
-        message: 'Which license would you like your project to be covered under?',
-        choices: [
-            'Apache 2.0',
-            'GNU GPLv2',
-            'GNU GPLv3',
-            'MIT',
-            'ISC',
-            'No License'            
-        ],
-        default: 'MIT'
-    },
-
-    {
-        name: 'licenseName',
-        type: 'input',
-        message: 'What is the name of the copyright holder (will appear on the license)?',
-        validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('\x1b[31mNo Input detected.  Please enter the copyright holder\'s name.\x1b[0m');
-                return false;
-            }
-        }
-    },
-
-    {
-        name: 'licenseYear',
-        type: 'input',
-        message: 'What is the current year (will appear on the license)?',
+        message: "What is the team manager's ID number?",
         validate: input => {
             if (!input) {
-                console.log('\x1b[31mNo Input detected.  Please enter a year.\x1b[0m');
+                console.log('\x1b[31mNo Input detected. Please enter a number.\x1b[0m');
                 return false;
             } else if (isNaN(input)) {
                 console.log('\x1b[31m\tPlease enter a number.\x1b[0m');
                 return false;
+            } else if (input < 0) {
+                console.log('\x1b[31m\tPlease enter a non-negative number.\x1b[0m');
+                return false;
             } else {
                 return true;
             }
-        }
+        } 
     },
 
     {
-        name: 'contribution',
+        name: 'email',
         type: 'input',
-        message: 'Please provice guidelines on how others can contribute to your project.',
+        message: "What is the team manager's email?",
         validate: input => {
             if (input) {
                 return true;
             } else {
-                console.log('\x1b[31mNo Input detected.  Please enter contribution guidelines.\x1b[0m');
+                console.log('\x1b[31mNo Input detected.  Please enter an email.\x1b[0m');
                 return false;
             }
-        }
+        } 
     },
 
     {
-        name: 'test',
+        name: 'officeNumber',
         type: 'input',
-        message: 'Please provide instructions on how to run tests for your project.',
+        message: "What is the team manager's office number?",
+        validate: input => {
+            if (!input) {
+                console.log('\x1b[31mNo Input detected. Please enter a number.\x1b[0m');
+                return false;
+            } else if (isNaN(input)) {
+                console.log('\x1b[31m\tPlease enter a number.\x1b[0m');
+                return false;
+            } else if (input < 0) {
+                console.log('\x1b[31m\tPlease enter a non-negative number.\x1b[0m');
+                return false;
+            } else {
+                return true;
+            }
+        } 
+    }
+
+];
+
+const engineerQuestions = [
+
+    {
+        name: 'name',
+        type: 'input',
+        message: "What is the engineer's name?",
         validate: input => {
             if (input) {
                 return true;
             } else {
-                console.log('\x1b[31mNo Input detected.  Please enter test instructions.\x1b[0m');
+                console.log('\x1b[31mNo Input detected. Please enter a name.\x1b[0m');
                 return false;
             }
-        }
+        } 
     },
 
     {
-        name: 'questionsUsername',
+        name: 'id',
         type: 'input',
-        message: 'What is your GitHub username?',
+        message: "What is the engineer's ID number?",
+        validate: input => {
+            if (!input) {
+                console.log('\x1b[31mNo Input detected. Please enter a number.\x1b[0m');
+                return false;
+            } else if (isNaN(input)) {
+                console.log('\x1b[31m\tPlease enter a number.\x1b[0m');
+                return false;
+            } else if (input < 0) {
+                console.log('\x1b[31m\tPlease enter a non-negative number.\x1b[0m');
+                return false;
+            } else {
+                return true;
+            }
+        } 
+    },
+
+    {
+        name: 'email',
+        type: 'input',
+        message: "What is the engineer's email?",
         validate: input => {
             if (input) {
                 return true;
             } else {
-                console.log('\x1b[31mNo Input detected.  Please enter your GitHub username.\x1b[0m');
+                console.log('\x1b[31mNo Input detected.  Please enter an email.\x1b[0m');
                 return false;
             }
-        }
+        } 
     },
 
     {
-        name: 'questionsEmail',
+        name: 'github',
         type: 'input',
-        message: 'What is your email address?',
+        message: "What is the engineer's github username?",
         validate: input => {
             if (input) {
                 return true;
             } else {
-                console.log('\x1b[31mNo Input detected.  Please enter your email address.\x1b[0m');
+                console.log('\x1b[31mNo Input detected.  Please enter a username.\x1b[0m');
                 return false;
             }
-        }
+        } 
     },
 
 ];
+
+const internQuestions = [
+
+    {
+        name: 'name',
+        type: 'input',
+        message: "What is the intern's name?",
+        validate: input => {
+            if (input) {
+                return true;
+            } else {
+                console.log('\x1b[31mNo Input detected. Please enter a name.\x1b[0m');
+                return false;
+            }
+        } 
+    },
+
+    {
+        name: 'id',
+        type: 'input',
+        message: "What is the intern's ID number?",
+        validate: input => {
+            if (!input) {
+                console.log('\x1b[31mNo Input detected. Please enter a number.\x1b[0m');
+                return false;
+            } else if (isNaN(input)) {
+                console.log('\x1b[31m\tPlease enter a number.\x1b[0m');
+                return false;
+            } else if (input < 0) {
+                console.log('\x1b[31m\tPlease enter a non-negative number.\x1b[0m');
+                return false;
+            } else {
+                return true;
+            }
+        } 
+    },
+
+    {
+        name: 'email',
+        type: 'input',
+        message: "What is the intern's email?",
+        validate: input => {
+            if (input) {
+                return true;
+            } else {
+                console.log('\x1b[31mNo Input detected.  Please enter an email.\x1b[0m');
+                return false;
+            }
+        } 
+    },
+
+    {
+        name: 'school',
+        type: 'input',
+        message: "What is the intern's school?",
+        validate: input => {
+            if (input) {
+                return true;
+            } else {
+                console.log('\x1b[31mNo Input detected.  Please enter a school.\x1b[0m');
+                return false;
+            }
+        } 
+    },
+
+];
+
+const menu = [
+
+    {
+        name: 'menu',
+        type: 'list',
+        message: 'Please select one of the following options:',
+        choices: [
+            'Add an engineer',
+            'Add an intern',
+            'Finish building team',         
+        ],
+        default: 'Add an engineer'
+    },
+
+]
+
