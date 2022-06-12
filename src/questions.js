@@ -1,9 +1,9 @@
 const introQuestion = [
 
     {
-        name: 'fileName',
+        name: 'name',
         type: 'input',
-        message: 'Enter a name for your HTML document.',
+        message: 'Enter a name for your document.',
         validate: input => {
             if (input) {
                 return true;
@@ -220,10 +220,10 @@ const internQuestions = [
 
 ];
 
-const menu = [
+const menuQuestion = [
 
     {
-        name: 'menuChoice',
+        name: 'menuOption',
         type: 'list',
         message: 'Please select one of the following options:',
         choices: [
@@ -241,5 +241,5 @@ module.exports = {
     managerQuestions,
     engineerQuestions,
     internQuestions,
-    menu
+    menuQuestion
 }

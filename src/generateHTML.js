@@ -1,5 +1,7 @@
-function generateHTML(data) {
+const generateHTML = (data) => {
+
   return `
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -36,6 +38,7 @@ function generateHTML(data) {
 </html>
 
 `;
-}
+
+};
 
 module.exports = generateHTML;
