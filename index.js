@@ -39,6 +39,9 @@ const managerQuery = () => {
     inquirer
     .prompt(managerQuestions)
     .then(({ name, id, email, officeNumber }) => {
+        
+        officeNumber = parseInt(officeNumber);
+        id = parseInt(id);
 
         const managerObject = new Manager(name, id, email, officeNumber);
         teamArray.push(managerObject);
@@ -56,6 +59,8 @@ const engineerQuery = () => {
     .prompt(engineerQuestions)
     .then(({ name, id, email, github }) => {
 
+        id = parseInt(id);
+
         const engineerObject = new Engineer(name, id, email, github);
         teamArray.push(engineerObject);
         menu();
@@ -71,6 +76,8 @@ const internQuery = () => {
     inquirer
     .prompt(internQuestions)
     .then(({ name, id, email, school }) => {
+
+        id = parseInt(id);
 
         const internObject = new Intern(name, id, email, school);
         teamArray.push(internObject);

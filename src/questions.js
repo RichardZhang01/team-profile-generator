@@ -5,11 +5,11 @@ const introQuestion = [
         type: 'input',
         message: 'Enter a name for your document.',
         validate: input => {
-            if (input) {
-                return true;
-            } else {
+            if (!input) {
                 console.log('\x1b[31mNo Input detected. Please enter a file name.\x1b[0m');
                 return false;
+            } else {
+                return true;
             }
         } 
     }
@@ -23,11 +23,11 @@ const managerQuestions = [
         type: 'input',
         message: "What is the team manager's name?",
         validate: input => {
-            if (input) {
-                return true;
-            } else {
+            if (!input) {
                 console.log('\x1b[31mNo Input detected. Please enter a name.\x1b[0m');
                 return false;
+            } else {
+                return true;
             }
         } 
     },

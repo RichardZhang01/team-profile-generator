@@ -1,0 +1,44 @@
+body {
+    background-color:#2a9d8f;
+}
+
+.header {
+    color: white;
+    background-color: #264653;
+    box-shadow: 1px 3px 19px 0px rgba(0,0,0,0.26);    
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.card {
+    border: 1px solid #bb9a48;
+    border-radius: 5px;
+    box-shadow: 1px 2px 16px 2px rgba(0,0,0,0.46);
+}
+
+.card-divider {
+    background-color: #bb9a48;
+    color: white;
+    padding: 5px;
+}
+
+.card-section {
+    padding-block: 30px;
+}
+
+p {
+    margin-block: 2px;
+}
+
+h2 {
+    padding: 0;
+    margin: 0;
+}
+
+h4 {
+    padding-bottom: 5px;
+}
+
+h1, h2, h3, h4, p {
+    font-family: 'Raleway', 'Noto Sans', Arial, sans-serif !important;
+}

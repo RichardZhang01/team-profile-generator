@@ -1,42 +1,132 @@
-const generateHTML = (data) => {
+const managerCard = ({ name, id, email, officeNumber }) => {
+
+    return `
+        <div class="cell flex-container">
+            <div class="card">
+                <div class="card-divider align-center grid-y">
+                    <h2>${name}</h2>
+                    <h4><i class="fa-solid fa-people-roof"></i> Manager</h4>
+                    </div>
+                <div class="card-section text-left">
+                    <p>ID number: <b>${id}</b></p>
+                    <p>E-mail: <a href="mailto: ${email}"><b>${email}</b></a></p>
+                    <p>Office Number: <b>${officeNumber}</b></p>
+                </div>
+            </div>
+        </div>
+    `;
+
+};
+
+const engineerCard = ({ name, id, email, github }) => {
+
+    return `
+        <div class="cell flex-container">
+            <div class="card">
+                <div class="card-divider align-center grid-y">
+                    <h2>${name}</h2>
+                    <h4><i class="fa-solid fa-laptop-code"></i> Engineer</h4>
+                    </div>
+                <div class="card-section text-left">
+                    <p>ID number: <b>${id}</b></p>
+                    <p>E-mail: <a href="mailto: ${email}"><b>${email}</b></a></p>
+                    <p>GitHub: <a href="https://github.com/${github}" target="_blank"><b>${github}</b></a></p>
+                </div>
+            </div>
+        </div>
+    `;
+
+};
+
+const internCard = ({ name, id, email, school }) => {
+
+    return `
+        <div class="cell flex-container">
+            <div class="card">
+                <div class="card-divider align-center grid-y">
+                    <h2>${name}</h2>
+                    <h4><i class="fa-solid fa-user-graduate"></i> Intern</h4>
+                    </div>
+                <div class="card-section text-left">
+                    <p>ID number: <b>${id}</b></p>
+                    <p>E-mail: <a href="mailto: ${email}"><b>${email}</b></a></p>
+                    <p>School: <b>${school}</b></p>
+                </div>
+            </div>
+        </div>
+    `;
+
+};
+
+const selectCard = (teamArray) => {
+
+    let cards = '';
+
+    teamArray.forEach(employee => {
+
+        const employeeRole = employee.getRole();
+
+        switch (employeeRole) {
+            case 'Manager':
+                cards += managerCard(employee); 
+                break;
+
+            case 'Engineer':
+                cards += engineerCard(employee);
+                break;
+
+            case 'Intern':
+                cards += internCard(employee);
+                break;
+        
+            default:
+                console.error('Something went wrong creating employee cards');
+                break;
+        };
+
+    });
+
+    return cards;
+
+};
+
+const generateHTML = (teamArray) => {
 
   return `
-
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${data.title}</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
 </head>
 
-<body class="bg-light">
-    
-<div class="jumbotron pb-2">
-    <h1 class="display-4 text-center mt-2">Hello, my name is ${data.name}!</h1>
-    <p class="lead text-center">I am currently in ${data.location}.</p>
-    <hr class="my-4">
-    <p class="mx-5"><b>A bit about me:</b> ${data.bio}</p>
-    <div class="text-center">
-        <p class="lead">
-            <div class="btn-group" role="group" aria-label="Button links">
-                <a class="btn btn-primary btn-lg" href="https://www.${data.linkedIn}" role="button">LinkedIn</a>
-                <a class="btn btn-primary btn-lg" href="https://${data.gitHub}" role="button">GitHub</a>
-            </div>
-        </p>
+<body>
+   
+    <div class="grid-y medium-grid-frame">
+        <div class="cell shrink header medium-cell-block-container text-center ">
+          <h1>My Team</h1>
+        </div>
+
+        <div class="cell grid-container fluid">
+          <div class="grid-x grid-margin-x text-center small-up-1 medium-up-2 large-up-3 container">
+
+          ${selectCard(teamArray)}  
+
+          </div>
+        </div>
+        
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>
 </body>
-
 </html>
-
 `;
 
 };
