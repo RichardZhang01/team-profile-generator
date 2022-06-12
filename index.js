@@ -19,7 +19,9 @@ let documentName = '';
 
 const intro = () => {
 
-    console.log();
+    console.log("\x1b[32m-----------------------------");
+    console.log("      Application Start      ");
+    console.log("-----------------------------\x1b[0m");
 
     inquirer
     .prompt(introQuestion)
@@ -34,7 +36,9 @@ const intro = () => {
 
 const managerQuery = () => {
 
-    console.log();
+    console.log("\x1b[32m-----------------------------");
+    console.log("     Manager Information      ");
+    console.log("-----------------------------\x1b[0m");
 
     inquirer
     .prompt(managerQuestions)
@@ -53,7 +57,9 @@ const managerQuery = () => {
 
 const engineerQuery = () => {
 
-    console.log();
+    console.log("\x1b[32m-----------------------------");
+    console.log("     Engineer Information      ");
+    console.log("-----------------------------\x1b[0m");
 
     inquirer
     .prompt(engineerQuestions)
@@ -71,7 +77,9 @@ const engineerQuery = () => {
 
 const internQuery = () => {
 
-    console.log();
+    console.log("\x1b[32m-----------------------------");
+    console.log("      Intern Information      ");
+    console.log("-----------------------------\x1b[0m");
 
     inquirer
     .prompt(internQuestions)
@@ -89,7 +97,9 @@ const internQuery = () => {
 
 const menu = () => {
 
-    console.log();
+    console.log("\x1b[32m-----------------------------");
+    console.log("       Application Menu      ");
+    console.log("-----------------------------\x1b[0m");
 
     inquirer
     .prompt(menuQuestion)
@@ -121,7 +131,8 @@ const menu = () => {
 };
 
 const init = () => {
-
+    
+    console.log("\x1b[32mHello. Welcome to this team profile generator application. You will be presented with a series of questions about your team members' information. Once you've finished adding the information of all team members, a styled HTML document will be generated in the 'dist' folder. Note that the styles are based on Foundation's CSS framework and some custom CSS styles found in the style.css document also in the 'dist' folder.\x1b[0m");
     intro();
 
 };
