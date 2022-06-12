@@ -61,7 +61,7 @@ This application is covered under the [MIT](https://opensource.org/licenses/MIT)
 
 ## <a id="how-to-contribute"></a>How to Contribute
 
-If you want to contribute to this project and make it better, your help is very welcome. This was a school project, so anything you want to do it, go for it. You can also contact me directly through the links below.
+If you want to contribute to this project and make it better, your help is very welcome. This was a school project, so anything you want to do to it, go for it. You can also contact me directly through the links below.
 
 ## <a id="tests"></a>Tests
 
