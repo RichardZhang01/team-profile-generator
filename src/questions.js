@@ -1,3 +1,5 @@
+let takenIDs = [];
+
 const introQuestion = [
 
     {
@@ -37,6 +39,16 @@ const managerQuestions = [
         type: 'input',
         message: "What is the team manager's ID number?",
         validate: input => {
+
+            let dupeID = false;
+
+            takenIDs.forEach(id => {
+
+                if (input === id) {
+                    dupeID = true;
+                }
+            })
+
             if (!input) {
                 console.log('\x1b[31mNo Input detected. Please enter a number.\x1b[0m');
                 return false;
@@ -46,7 +58,11 @@ const managerQuestions = [
             } else if (input < 0) {
                 console.log('\x1b[31m\tPlease enter a non-negative number.\x1b[0m');
                 return false;
-            } else {
+            } else if (dupeID) {
+                console.log('\x1b[31m\tAnother team member already has that ID. Please enter a different ID.\x1b[0m');
+                return false;
+            }else {
+                takenIDs.push(input);
                 return true;
             }
         } 
@@ -55,13 +71,20 @@ const managerQuestions = [
     {
         name: 'email',
         type: 'input',
-        message: "What is the team manager's email?",
-        validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('\x1b[31mNo Input detected.  Please enter an email.\x1b[0m');
+        message: "What is the team manager's email address?",
+        validate: email => {
+
+            const validEmail = String(email)
+            .toLowerCase()
+            .match(
+              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+
+            if (!validEmail) {
+                console.log('\x1b[31m\tPlease enter a valid email address in the proper format.\x1b[0m');
                 return false;
+            } else {
+                return true;
             }
         } 
     },
@@ -95,11 +118,11 @@ const engineerQuestions = [
         type: 'input',
         message: "What is the engineer's name?",
         validate: input => {
-            if (input) {
-                return true;
-            } else {
+            if (!input) {
                 console.log('\x1b[31mNo Input detected. Please enter a name.\x1b[0m');
                 return false;
+            } else {
+                return true;
             }
         } 
     },
@@ -109,6 +132,16 @@ const engineerQuestions = [
         type: 'input',
         message: "What is the engineer's ID number?",
         validate: input => {
+
+            let dupeID = false;
+
+            takenIDs.forEach(id => {
+
+                if (input === id) {
+                    dupeID = true;
+                }
+            })
+
             if (!input) {
                 console.log('\x1b[31mNo Input detected. Please enter a number.\x1b[0m');
                 return false;
@@ -118,7 +151,11 @@ const engineerQuestions = [
             } else if (input < 0) {
                 console.log('\x1b[31m\tPlease enter a non-negative number.\x1b[0m');
                 return false;
-            } else {
+            } else if (dupeID) {
+                console.log('\x1b[31m\tAnother team member already has that ID. Please enter a different ID.\x1b[0m');
+                return false;
+            }else {
+                takenIDs.push(input);
                 return true;
             }
         } 
@@ -127,13 +164,20 @@ const engineerQuestions = [
     {
         name: 'email',
         type: 'input',
-        message: "What is the engineer's email?",
-        validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('\x1b[31mNo Input detected.  Please enter an email.\x1b[0m');
+        message: "What is the engineer's email address?",
+        validate: email => {
+
+            const validEmail = String(email)
+            .toLowerCase()
+            .match(
+              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+
+            if (!validEmail) {
+                console.log('\x1b[31m\tPlease enter a valid email address in the proper format.\x1b[0m');
                 return false;
+            } else {
+                return true;
             }
         } 
     },
@@ -143,11 +187,11 @@ const engineerQuestions = [
         type: 'input',
         message: "What is the engineer's github username?",
         validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('\x1b[31mNo Input detected.  Please enter a username.\x1b[0m');
+            if (!input) {
+                console.log('\x1b[31mNo Input detected. Please enter a username.\x1b[0m');
                 return false;
+            } else {
+                return true;
             }
         } 
     },
@@ -161,11 +205,11 @@ const internQuestions = [
         type: 'input',
         message: "What is the intern's name?",
         validate: input => {
-            if (input) {
-                return true;
-            } else {
+            if (!input) {
                 console.log('\x1b[31mNo Input detected. Please enter a name.\x1b[0m');
                 return false;
+            } else {
+                return true;
             }
         } 
     },
@@ -175,6 +219,16 @@ const internQuestions = [
         type: 'input',
         message: "What is the intern's ID number?",
         validate: input => {
+
+            let dupeID = false;
+
+            takenIDs.forEach(id => {
+
+                if (input === id) {
+                    dupeID = true;
+                }
+            })
+
             if (!input) {
                 console.log('\x1b[31mNo Input detected. Please enter a number.\x1b[0m');
                 return false;
@@ -184,7 +238,11 @@ const internQuestions = [
             } else if (input < 0) {
                 console.log('\x1b[31m\tPlease enter a non-negative number.\x1b[0m');
                 return false;
-            } else {
+            } else if (dupeID) {
+                console.log('\x1b[31m\tAnother team member already has that ID. Please enter a different ID.\x1b[0m');
+                return false;
+            }else {
+                takenIDs.push(input);
                 return true;
             }
         } 
@@ -193,13 +251,20 @@ const internQuestions = [
     {
         name: 'email',
         type: 'input',
-        message: "What is the intern's email?",
-        validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('\x1b[31mNo Input detected.  Please enter an email.\x1b[0m');
+        message: "What is the intern's email address?",
+        validate: email => {
+
+            const validEmail = String(email)
+            .toLowerCase()
+            .match(
+              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+
+            if (!validEmail) {
+                console.log('\x1b[31m\tPlease enter a valid email address in the proper format.\x1b[0m');
                 return false;
+            } else {
+                return true;
             }
         } 
     },
@@ -209,11 +274,11 @@ const internQuestions = [
         type: 'input',
         message: "What is the intern's school?",
         validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('\x1b[31mNo Input detected.  Please enter a school.\x1b[0m');
+            if (!input) {
+                console.log('\x1b[31mNo Input detected. Please enter a school.\x1b[0m');
                 return false;
+            } else {
+                return true;
             }
         } 
     },
