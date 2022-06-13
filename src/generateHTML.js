@@ -60,8 +60,10 @@ const internCard = ({ name, id, email, school }) => {
 
 const selectCard = (teamArray) => {
 
+    // variable containing returned HTML cards code
     let cards = '';
 
+    // sequentially adds cards of the correct role to cards variable
     teamArray.forEach(employee => {
 
         const employeeRole = employee.getRole();
@@ -86,6 +88,7 @@ const selectCard = (teamArray) => {
 
     });
 
+    // returns all of the code for the cards to the generateHTML function
     return cards;
 
 };

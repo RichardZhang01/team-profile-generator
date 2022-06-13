@@ -1,7 +1,9 @@
+// dependency
 const fs = require('fs');
 
 const writeToFile = (documentName, documentBody) => {
 
+    // writes file to dist folder. removes .html if user entered it
     const filePath = `./dist/${documentName.replace('.html', '')}`;
 
     fs.writeFile(`${filePath}.html`, documentBody, (err) =>

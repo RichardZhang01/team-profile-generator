@@ -1,3 +1,4 @@
+// stores IDs, used in ID validation to ensure no duplicates
 let takenIDs = [];
 
 const introQuestion = [
