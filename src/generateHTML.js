@@ -117,8 +117,8 @@ const generateHTML = (teamArray) => {
           <h1>My Team</h1>
         </div>
 
-        <div class="cell grid-container fluid">
-          <div class="grid-x grid-margin-x text-center small-up-1 medium-up-2 large-up-3 container">
+        <div class="cell cell-block body auto">
+          <div class="grid-x grid-padding-x text-center small-up-1 medium-up-2 large-up-3 container">
 
           ${selectCard(teamArray)}  
 
