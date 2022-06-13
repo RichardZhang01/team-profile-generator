@@ -35,7 +35,7 @@ Once the application is opened in Visual Studio Code, or navigated to using Git 
 
       node index.js 
 
-Answer the questions, and once you're done, an HTML file will be generated in the **dist** folder with basic styling included using [Foundation](https://get.foundation/) (CDN linked in the HTML document) and some custom CSS (based on the style.css also in the dist folder).
+Answer the questions, and once you're done, an HTML file will be generated in the **dist** folder with basic styling included using [Foundation](https://get.foundation/) (CDN linked in the HTML document) and some custom CSS (based on style.css also in the dist folder).
 
 ## <a id="video"></a>Video Demonstration
 

@@ -107,12 +107,12 @@ const generateHTML = (teamArray) => {
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="./style.css">
-    <title>Document</title>
+    <title>Team Profile</title>
 </head>
 
 <body>
    
-    <div class="grid-y medium-grid-frame">
+    <div class="grid-y grid-frame">
         <div class="cell shrink header medium-cell-block-container text-center ">
           <h1>My Team</h1>
         </div>
