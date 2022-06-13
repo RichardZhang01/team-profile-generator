@@ -39,9 +39,11 @@ Answer the questions, and once you're done, an HTML file will be generated in th
 
 ## <a id="video"></a>Video Demonstration
 
-The full video demonstration can be found [here](https://drive.google.com/file/d/1rkNT_9gIpvZyJByfjNF2xFbGEpJQliMV/view)
+The full video demonstration can be found [here](https://drive.google.com/file/d/1leaS34yjzFNGZMNpXGsZMu5aj2CkGZ1H/view)
 
-![Screenshot of a sample generated HTML document](./assets/images/screenshot.png)
+![Screenshot of the command-line using the app](./assets/images/screenshot-1.png)
+
+![Screenshot of a sample generated HTML document](./assets/images/screenshot-2.png)
 
 ## <a id="license"></a>License
 
